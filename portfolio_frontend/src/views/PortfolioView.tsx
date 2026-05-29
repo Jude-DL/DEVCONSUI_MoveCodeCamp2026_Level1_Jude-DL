@@ -16,7 +16,8 @@ const useMetaTags = (metadata: {
     document.title = metadata.title;
 
     // Update or create meta tags
-    const metaTags = [
+    type MetaTag = { name: string; content: string } | { property: string; content: string };
+    const metaTags: MetaTag[] = [
       { name: 'title', content: metadata.title },
       { name: 'description', content: metadata.description },
       { property: 'og:title', content: metadata.title },
@@ -66,19 +67,19 @@ const useMetaTags = (metadata: {
 // PORTFOLIO DATA CONFIGURATION
 // ============================================================================
 const defaultPortfolioData = {
-  name: "LADY DIANE BAUZON CASILANG",
+  name: "JUDE CHRISTIAN D. DEL ROSARIO",
   course: "BS in Information Technology",
-  school: "FEU Institute of Technology",
-  about: "I am a fourth-year IT student and freelance designer who integrates technical troubleshooting with creative insight to deliver innovative, efficient solutions.",
+  school: "(UC-PNC) University of Cabuyao",
+  about: "I am a fourth-year IT student a full-stack developer. I have experience in web and mobile development, and I am passionate about learning new technologies. I am currently exploring the world of blockchain and smart contracts, and I am excited to see how they can be used to create innovative solutions.",
   skills: [
-    "Graphic Design",
-    "UI / UX Design",
+    "Network Security",
+    "Database Management",
     "Project Management",
     "Full Stack Development",
-    "Web & App Development"
+    "Web & Mobile Development"
   ],
-  linkedin: "https://www.linkedin.com/in/ldcasilang/",
-  github: "https://github.com/ldcasilang",
+  linkedin: "https://www.linkedin.com/in/del-rosario-jude-christian-d-215985386/",
+  github: "https://github.com/Jude-DL",
 }
 
 // Network configuration
@@ -183,7 +184,7 @@ const PortfolioView = () => {
               about: fields.about || defaultPortfolioData.about,
               linkedin: fields.linkedin_url || defaultPortfolioData.linkedin,
               github: fields.github_url || defaultPortfolioData.github,
-              skills: fields.skills ? fields.skills.split(",").map(s => s.trim()) : defaultPortfolioData.skills,
+                skills: fields.skills ? fields.skills.split(",").map((s: string) => s.trim()) : defaultPortfolioData.skills,
             };
             
             setPortfolioData(newPortfolioData);
